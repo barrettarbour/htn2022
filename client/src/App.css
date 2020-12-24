@@ -1,0 +1,11 @@
+.ui.menu .item.logo-text {
+	font-size: 1.5em;
+}
+
+.ui.menu .item > img:not(.ui) {
+	margin-left: 1em;
+}
+
+.ui.menu .item {
+	font-size: 1.2em;
+}
