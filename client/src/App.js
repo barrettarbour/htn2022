@@ -2,17 +2,15 @@ import React from 'react';
 import { HashRouter, Switch, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Home from './components/Home';
-import About from './components/About';
-import './App.css';
+import './App.scss';
 
 const App = () => {
 	return (
 		<HashRouter basename='/'>
-			<NavBar></NavBar>
+			<NavBar />
 			<Switch>
 				<Route exact path='/' render={() => <Home />} />
 				<Route path='/home' render={() => <Home />} />
-				<Route path='/about' render={() => <About />} />
 			</Switch>
 		</HashRouter>
 	);
