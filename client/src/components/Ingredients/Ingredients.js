@@ -32,6 +32,7 @@ function thresholdFilter(pixels, level) {
 }
 
 const Ingredients = ({ handleSubmit }) => {
+  document.body.style.backgroundColor = "#efbed5";
   const videoRef = useRef(null);
   const photoRef = useRef(null);
 
@@ -39,9 +40,7 @@ const Ingredients = ({ handleSubmit }) => {
 
   const getVideo = () => {
     navigator.mediaDevices
-      .getUserMedia({
-        video: { width: 1920, height: 1080 },
-      })
+      .getUserMedia({ video: { facingMode: "environment" } })
       .then((stream) => {
         let video = videoRef.current;
         video.srcObject = stream;
@@ -99,20 +98,24 @@ const Ingredients = ({ handleSubmit }) => {
 
   return (
     <div class="wrapper2">
+      <h3>
+        <b>Scan your Ingredients Label Below</b>
+      </h3>
       <div class="padding">
         <div classname="camera">
           <video ref={videoRef}></video>
           <button class="submitBtn" onClick={takePhoto}>
-            Take pic!
+            Snap your pic, click until you're happy!
           </button>
         </div>
         <div className={"result" + (hasPhoto ? "hasPhoto" : "")}>
           <canvas ref={photoRef}></canvas>
         </div>
-        <button onClick={handleClick}> Convert </button>
+        <h4>
+          <b>Or input the ingredients manually (seperated by commas):</b>
+        </h4>
         <form>
           <label>
-            Name:
             <input
               type="text"
               value={ingredients}
@@ -128,6 +131,10 @@ const Ingredients = ({ handleSubmit }) => {
             }}
           />
         </form>
+        <button class="submitBtn" onClick={handleClick}>
+          {" "}
+          Ready to analyze?{" "}
+        </button>
       </div>
     </div>
   );

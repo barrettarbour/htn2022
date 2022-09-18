@@ -56,6 +56,7 @@ const Choices = ({ handleSubmit }) => {
           </ul>
         </div>
         <button
+          class="submitBtn"
           onClick={() => {
             handleSubmit(checkedState);
           }}

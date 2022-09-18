@@ -3,6 +3,7 @@ import check from "../../symbols/iconCheckmarkOutline.png";
 import close from "../../symbols/iconCloseOutline.png";
 
 const Results = ({ selectedChoices, ingredients }) => {
+  document.body.style.backgroundColor = "#86d3ea";
   const API_URL = "http://localhost:3001";
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
