@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import check from "../../symbols/iconCheckmarkOutline.png";
+import close from "../../symbols/iconCloseOutline.png";
 
 const Results = ({ selectedChoices, ingredients }) => {
   const API_URL = "http://localhost:3001";
@@ -33,7 +35,7 @@ const Results = ({ selectedChoices, ingredients }) => {
   return (
     <div class="wrapper3">
       <div class="padding">
-        <h1>Results</h1>
+        <h1>Your Scanned Results</h1>
         {loading && <div>A moment please...</div>}
         {error && (
           <div>{`There is a problem fetching the post data - ${error}`}</div>
@@ -42,10 +44,29 @@ const Results = ({ selectedChoices, ingredients }) => {
           if (choice.value && data.dairyIngredients && choice.name == "dairy") {
             return (
               <div class="ingredBox">
-                <div>{choice.name}</div>
-                We found <b>{data.dairyIngredients.length}</b> ingredients
-                flagged as dairy!
-                {data.dairyIngredients.toString()}
+                <div class="blueHead">
+                  <h4>{choice.name}</h4>
+                  {data.dairyIngredients.length > 0 ? (
+                    <img
+                      src={close}
+                      alt="black close"
+                      width="35"
+                      height="35"
+                    ></img>
+                  ) : (
+                    <img
+                      src={check}
+                      alt="black checkmark"
+                      width="35"
+                      height="35"
+                    ></img>
+                  )}
+                </div>
+                <p>
+                  We found <b>{data.dairyIngredients.length}</b> ingredients
+                  flagged as dairy!
+                </p>
+                <p class="pIngList"> {data.dairyIngredients.join(", ")}</p>
               </div>
             );
           } else if (
@@ -54,12 +75,31 @@ const Results = ({ selectedChoices, ingredients }) => {
             choice.name == "added sugar"
           ) {
             return (
-              <p>
-                {choice.name}
-                We found {data.addedSugarIngredients.length} ingredients flagged
-                as added sugar!
-                {data.addedSugarIngredients.toString()}
-              </p>
+              <div class="ingredBox">
+                <div class="blueHead">
+                  <h4>{choice.name}</h4>
+                  {data.addedSugarIngredients.length > 0 ? (
+                    <img
+                      src={close}
+                      alt="black close"
+                      width="35"
+                      height="35"
+                    ></img>
+                  ) : (
+                    <img
+                      src={check}
+                      alt="black checkmark"
+                      width="35"
+                      height="35"
+                    ></img>
+                  )}
+                </div>
+                <p>
+                  We found <b>{data.addedSugarIngredients.length}</b>{" "}
+                  ingredients flagged added sugar!
+                </p>
+                <p class="pIngList"> {data.addedSugarIngredients.join(", ")}</p>
+              </div>
             );
           } else if (
             choice.value &&
@@ -67,12 +107,31 @@ const Results = ({ selectedChoices, ingredients }) => {
             choice.name == "shellfish"
           ) {
             return (
-              <p>
-                {choice.name}
-                We found {data.shellfishIngredients.length} ingredients flagged
-                as shellfish!
-                {data.shellfishIngredients.toString()}
-              </p>
+              <div class="ingredBox">
+                <div class="blueHead">
+                  <h4>{choice.name}</h4>
+                  {data.shellfishIngredients.length > 0 ? (
+                    <img
+                      src={close}
+                      alt="black close"
+                      width="35"
+                      height="35"
+                    ></img>
+                  ) : (
+                    <img
+                      src={check}
+                      alt="black checkmark"
+                      width="35"
+                      height="35"
+                    ></img>
+                  )}
+                </div>
+                <p>
+                  We found <b>{data.shellfishIngredients.length}</b> ingredients
+                  flagged shellfish!
+                </p>
+                <p class="pIngList"> {data.shellfishIngredients.join(", ")} </p>
+              </div>
             );
           }
         })}

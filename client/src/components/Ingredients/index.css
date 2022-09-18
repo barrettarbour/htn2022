@@ -123,3 +123,31 @@ h3 {
   background-color: white;
   border-radius: 20px;
 }
+
+.blueHead {
+  background-color: #2db9e2;
+  border-radius: 20px 20px 0 0;
+  padding: 1em;
+  height: 30px;
+}
+
+p {
+  padding: 10px;
+  margin: 10px;
+}
+
+.pIngList {
+  margin-top: 5px;
+  padding-top: 0;
+}
+
+h4 {
+  position: relative;
+  float: left;
+  margin-top: 10px;
+}
+
+img {
+  position: relative;
+  float: right;
+}
