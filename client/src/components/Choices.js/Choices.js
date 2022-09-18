@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Choices = ({ nextStep }) => {
+const Choices = ({ handleSubmit }) => {
 	const choices = [
 		{
 			name: 'added sugar'
@@ -12,7 +12,6 @@ const Choices = ({ nextStep }) => {
 			name: 'shellfish'
 		}
 	];
-
 	const [checkedState, setCheckedState] = useState(
 		new Array(choices.length).fill(false)
 	);
@@ -23,11 +22,6 @@ const Choices = ({ nextStep }) => {
 		);
 
 		setCheckedState(updatedCheckedState);
-	};
-
-	const handleSubmit = () => {
-		console.log(checkedState);
-		nextStep();
 	};
 
 	return (
@@ -56,7 +50,13 @@ const Choices = ({ nextStep }) => {
 					);
 				})}
 			</ul>
-			<button onClick={handleSubmit}>Submit</button>
+			<button
+				onClick={() => {
+					handleSubmit(checkedState);
+				}}
+			>
+				Submit
+			</button>
 		</div>
 	);
 };
