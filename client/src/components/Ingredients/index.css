@@ -15,7 +15,6 @@ body {
   position: fixed;
   top: 0;
   left: 100%;
-  width: 100%;
   display: flex;
   align-items: center;
   background-color: black;
@@ -56,6 +55,10 @@ ul {
 li {
   padding-top: 1em;
   padding-bottom: 1em;
+}
+
+canvas {
+  border-radius: 20px;
 }
 
 .wrapper1 {

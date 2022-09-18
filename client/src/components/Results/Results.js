@@ -5,71 +5,77 @@ const Results = ({ selectedChoices, ingredients }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const dairyItems = [];
-  const sugarItems = [];
-  const shellfishItems = [];
-  const promises = [];
 
-  /* 	useEffect(() => {
-			fetch(`${API_URL}/api?inputs=${element}`)
-			.then((response) => {
-				if (!response.ok) {
-					throw new Error(
-						`This is an HTTP error: The status is ${response.status}`
-					);
-				}
-				return response.json();
-			})
-			.then((actualData) => {
-				setData(actualData);
-				setError(null);
-			})
-			.catch((err) => {
-				setError(err.message);
-				setData(null);
-			})
-			.finally(() => {
-				setLoading(false);
-				data.forEach((element) => {
-					if (element.prediction == 'dairy')
-					{
-						dairyItems.append(element.)
-					}
-				});
-			});
-		})
-	}, []); */
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await fetch(
+          `${API_URL}/api?ingredients=${ingredients}`
+        );
+        if (!response.ok) {
+          throw new Error(
+            `This is an HTTP error: The status is ${response.status}`
+          );
+        }
+        let actualData = await response.json();
+        setData(actualData);
+        setError(null);
+      } catch (err) {
+        setError(err.message);
+        setData(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+    getData();
+  }, []);
 
   return (
-    <div className="App">
-      <div class="wrapper3">
-        <div class="padding">
-          <h1>Results</h1>
-          {/* {loading && <div>A moment please...</div>}
-			{error && (
-				<div>{`There is a problem fetching the post data - ${error}`}</div>
-			)}
-			{selectedChoices.forEach((element) => {
-				if (element) {
-					return (
-						<div>
-							<h1>element.name</h1>
-						</div>
-					);
-				}
-			})}
-
-			<ul>
-				{data &&
-					data.map((element) => (
-						<li>
-							<h3>{element.input}</h3>
-							<h3>this is a {element.prediction}</h3>
-							<h3>{element.confidences.toString()}</h3>
-						</li>
-					))}
-			</ul> */}
-        </div>
+    <div class="wrapper3">
+      <div class="padding">
+        <h1>Results</h1>
+        {loading && <div>A moment please...</div>}
+        {error && (
+          <div>{`There is a problem fetching the post data - ${error}`}</div>
+        )}
+        {selectedChoices.map((choice) => {
+          if (choice.value && data.dairyIngredients && choice.name == "dairy") {
+            return (
+              <div>
+                <div>{choice.name}</div>
+                We found <b>{data.dairyIngredients.length}</b> ingredients
+                flagged as dairy!
+                {data.dairyIngredients.toString()}
+              </div>
+            );
+          } else if (
+            choice.value &&
+            data.addedSugarIngredients &&
+            choice.name == "added sugar"
+          ) {
+            return (
+              <p>
+                {choice.name}
+                We found {data.addedSugarIngredients.length} ingredients flagged
+                as added sugar!
+                {data.addedSugarIngredients.toString()}
+              </p>
+            );
+          } else if (
+            choice.value &&
+            data.shellfishIngredients &&
+            choice.name == "shellfish"
+          ) {
+            return (
+              <p>
+                {choice.name}
+                We found {data.shellfishIngredients.length} ingredients flagged
+                as shellfish!
+                {data.shellfishIngredients.toString()}
+              </p>
+            );
+          }
+        })}
       </div>
     </div>
   );

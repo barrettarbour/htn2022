@@ -36,7 +36,6 @@ const Ingredients = ({ handleSubmit }) => {
   const photoRef = useRef(null);
 
   const [hasPhoto, setHasPhoto] = useState(false);
-  const [text, setText] = useState("");
 
   const getVideo = () => {
     navigator.mediaDevices
@@ -87,6 +86,7 @@ const Ingredients = ({ handleSubmit }) => {
       })
       .then(({ data: { text } }) => {
         console.log(text);
+        setIngredients(text);
       });
   };
 
