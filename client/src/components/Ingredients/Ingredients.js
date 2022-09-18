@@ -97,33 +97,37 @@ const Ingredients = ({ handleSubmit }) => {
   };
 
   return (
-    <div>
-      <div classname="camera">
-        <video ref={videoRef}></video>
-        <button onClick={takePhoto}>Take pic!</button>
-      </div>
-      <div className={"result" + (hasPhoto ? "hasPhoto" : "")}>
-        <canvas ref={photoRef}></canvas>
-      </div>
-      <button onClick={handleClick}> Convert </button>
-      <form>
-        <label>
-          Name:
+    <div class="wrapper2">
+      <div class="padding">
+        <div classname="camera">
+          <video ref={videoRef}></video>
+          <button class="submitBtn" onClick={takePhoto}>
+            Take pic!
+          </button>
+        </div>
+        <div className={"result" + (hasPhoto ? "hasPhoto" : "")}>
+          <canvas ref={photoRef}></canvas>
+        </div>
+        <button onClick={handleClick}> Convert </button>
+        <form>
+          <label>
+            Name:
+            <input
+              type="text"
+              value={ingredients}
+              onChange={handleChange}
+              name="name"
+            />
+          </label>
           <input
-            type="text"
-            value={ingredients}
-            onChange={handleChange}
-            name="name"
+            type="submit"
+            value="Next"
+            onClick={() => {
+              handleSubmit(ingredients);
+            }}
           />
-        </label>
-        <input
-          type="submit"
-          value="Submit"
-          onClick={() => {
-            handleSubmit(ingredients);
-          }}
-        />
-      </form>
+        </form>
+      </div>
     </div>
   );
 };

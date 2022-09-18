@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const Results = ({ selectedChoices, ingredients }) => {
-	const API_URL = 'http://localhost:3001';
-	const [data, setData] = useState([]);
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState(null);
-	const dairyItems = [];
-	const sugarItems = [];
-	const shellfishItems = [];
-	const promises = [];
+  const API_URL = "http://localhost:3001";
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const dairyItems = [];
+  const sugarItems = [];
+  const shellfishItems = [];
+  const promises = [];
 
-	/* 	useEffect(() => {
+  /* 	useEffect(() => {
 			fetch(`${API_URL}/api?inputs=${element}`)
 			.then((response) => {
 				if (!response.ok) {
@@ -40,10 +40,12 @@ const Results = ({ selectedChoices, ingredients }) => {
 		})
 	}, []); */
 
-	return (
-		<div className='App'>
-			<h1>Results</h1>
-			{/* {loading && <div>A moment please...</div>}
+  return (
+    <div className="App">
+      <div class="wrapper3">
+        <div class="padding">
+          <h1>Results</h1>
+          {/* {loading && <div>A moment please...</div>}
 			{error && (
 				<div>{`There is a problem fetching the post data - ${error}`}</div>
 			)}
@@ -67,8 +69,10 @@ const Results = ({ selectedChoices, ingredients }) => {
 						</li>
 					))}
 			</ul> */}
-		</div>
-	);
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Results;
