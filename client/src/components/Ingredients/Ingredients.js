@@ -31,7 +31,7 @@ function thresholdFilter(pixels, level) {
   }
 }
 
-const Ingredients = () => {
+const Ingredients = ({ handleSubmit }) => {
   const videoRef = useRef(null);
   const photoRef = useRef(null);
 
@@ -90,6 +90,12 @@ const Ingredients = () => {
       });
   };
 
+  const [ingredients, setIngredients] = useState("");
+
+  const handleChange = (e) => {
+    setIngredients(e.target.value);
+  };
+
   return (
     <div>
       <div classname="camera">
@@ -100,6 +106,24 @@ const Ingredients = () => {
         <canvas ref={photoRef}></canvas>
       </div>
       <button onClick={handleClick}> Convert </button>
+      <form>
+        <label>
+          Name:
+          <input
+            type="text"
+            value={ingredients}
+            onChange={handleChange}
+            name="name"
+          />
+        </label>
+        <input
+          type="submit"
+          value="Submit"
+          onClick={() => {
+            handleSubmit(ingredients);
+          }}
+        />
+      </form>
     </div>
   );
 };
