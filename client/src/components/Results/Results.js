@@ -41,7 +41,7 @@ const Results = ({ selectedChoices, ingredients }) => {
         {selectedChoices.map((choice) => {
           if (choice.value && data.dairyIngredients && choice.name == "dairy") {
             return (
-              <div>
+              <div class="ingredBox">
                 <div>{choice.name}</div>
                 We found <b>{data.dairyIngredients.length}</b> ingredients
                 flagged as dairy!

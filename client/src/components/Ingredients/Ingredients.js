@@ -86,7 +86,8 @@ const Ingredients = ({ handleSubmit }) => {
       })
       .then(({ data: { text } }) => {
         console.log(text);
-        setIngredients(text);
+        //setIngredients(text);
+        handleSubmit(text);
       });
   };
 
